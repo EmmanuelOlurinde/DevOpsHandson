@@ -12,13 +12,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Build
+    
+    - name: Build and Push Docker image
       run: |
-        echo "Building your application..."
-        # Add your build commands here
-
-    - name: Test
-      run: |
-        echo "Running tests..."
-        # Add your test commands here
+        echo "Building Docker image..."
+        docker build -t emmanuelolurinde/githubdocker:latest .
+        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+        docker push emmanuelolurinde/githubdocker:latest
+      env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
