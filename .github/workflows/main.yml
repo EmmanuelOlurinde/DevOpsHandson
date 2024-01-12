@@ -23,7 +23,7 @@ jobs:
 
     - name: Build and Push Docker image
       run: |
-        echo "Building Docker image..."
+        echo "Building Docker image....."
         docker build -t emmanuelolurinde/githubdocker:latest .
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         docker push emmanuelolurinde/githubdocker:latest
