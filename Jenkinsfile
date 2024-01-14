@@ -8,6 +8,17 @@ pipeline {
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Check if npm is available
+                    sh 'which npm || { echo "npm not found"; exit 1; }'
+                    // Install dependencies
+                    sh 'npm install'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'npm install'
